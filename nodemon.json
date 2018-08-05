@@ -1,0 +1,5 @@
+{
+	"env":{
+		"mongo_atlas": "admin"
+	} 
+}
