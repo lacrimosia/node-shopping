@@ -11,13 +11,16 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/order');
 
+// import the env file package
+require('dotenv').config({path:'./.env.default'});
+
 // connect to database
 // connection accounts
-const pass = process.env.MONGO_ATLAS;
-console.log("p", pass);
-const connectionUrl = 'mongodb+srv://admin:'+pass+'@node-shop-ohkmc.mongodb.net/test?retryWrites=true';
+const pass = process.env.PASSWORD;
+const user = process.env.USER;
+const connectionUrl = 'mongodb+srv://'+user+':'+pass+'@node-shop-ohkmc.mongodb.net/test?retryWrites=true';
 //const connectionUrl = 'mongodb+srv://node-shop:'+process.env.mongo_atlas+'@node-shop-ohkmc.mongodb.net/test?retryWrites=true'
-mongoose.connect(connectionUrl).then(() => {
+mongoose.connect(connectionUrl, { useNewUrlParser: true }).then(() => {
     console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
